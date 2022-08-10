@@ -3,10 +3,10 @@ import liff from '@line/liff';
 import { useForm } from 'react-hook-form';
 import './App.css';
 
-const Input = ({ label, register, required }) => (
+const Input = ({ label, value, register, required }) => (
   <>
     <label>{label}</label>:
-    <input {...register(label, { required })} />
+    <input {...register(value, { required })} />
   </>
 );
 
@@ -59,12 +59,27 @@ function App() {
   // };
 
   const handleSendMessages = (postData) => {
-    console.log(postData);
+    // console.log(postData);
+    const messages = `商品
+      ${postData.product}
+      総合評価
+      ${postData.rate}
+      ニックネーム
+      ${postData.nickname}
+      タイトル
+      ${postData.title}
+      本文
+      ${postData.description}
+      `
+      .trim()
+      .replace(/(?<=^|\r|\r?\n)\s+/g, '');
+
+    // console.log(messages);
     liff
       .sendMessages([
         {
           type: 'text',
-          text: JSON.stringify(postData),
+          text: messages,
         },
       ])
       .then(() => {
@@ -75,36 +90,20 @@ function App() {
       });
   };
 
-  // useEffect(() => {
-  //   setVersion(liff.getLineVersion());
-  //   liff
-  //     .init({
-  //       liffId: import.meta.env.VITE_LIFF_ID,
-  //     })
-  //     .then(() => {
-  //       setMessage('LIFF init succeeded.');
-  //       setLogin(liff.isLoggedIn().toString());
-  //     })
-  //     .catch((e) => {
-  //       setMessage('LIFF init failed.');
-  //       setError(`${e}`);
-  //     });
-  // });
-
   return (
     <>
       <p>ようそこ LIFFアプリへ!</p>
       <form onSubmit={handleSubmit(handleSendMessages)}>
         {/* ここはRailsから取ってきて商品一覧にしたい */}
-        <Input label="商品" register={register} required />
+        <Input label="商品" value="product" register={register} required />
         <br />
-        <Select label="総合評価" {...register('総合評価')} />
+        <Select label="総合評価" {...register('rate')} />
         <br />
-        <Input label="ニックネーム" register={register} />
+        <Input label="ニックネーム" value="nickname" register={register} />
         <br />
-        <Input label="タイトル" register={register} />
+        <Input label="タイトル" value="title" register={register} />
         <br />
-        <Input label="本文" register={register} />
+        <Input label="本文" value="description" register={register} />
         <br />
         {errors.exampleRequired && <span>This field is required</span>}
         <input type="submit" value="投稿する" />
