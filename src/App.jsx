@@ -6,6 +6,7 @@ function App() {
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
   const [version, setVersion] = useState('');
+  const [login, setLogin] = useState('');
 
   useEffect(() => {
     setVersion(liff.getLineVersion());
@@ -15,6 +16,7 @@ function App() {
       })
       .then(() => {
         setMessage('LIFF init succeeded.');
+        setLogin(toString(liff.isLoggedIn()));
       })
       .catch((e) => {
         setMessage('LIFF init failed.');
