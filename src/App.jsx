@@ -93,7 +93,7 @@ function App() {
       <form onSubmit={handleSubmit(handleSendMessages)}>
         {/* ここはRailsから取ってきて商品一覧にしたい */}
         <Input label="商品" value="product" register={register} />
-        <br />
+        {/* <br />
         <Select label="総合評価" {...register('rate')} />
         <br />
         <Input label="ニックネーム" value="nickname" register={register} />
@@ -101,7 +101,7 @@ function App() {
         <Input label="タイトル" value="title" register={register} />
         <br />
         <Input label="本文" value="description" register={register} />
-        <br />
+        <br /> */}
         {errors.exampleRequired && <span>This field is required</span>}
         <input type="submit" value="投稿する" />
       </form>
