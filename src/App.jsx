@@ -32,7 +32,7 @@ function App() {
   } = useForm();
 
   useEffect(() => {
-    // initLiff();
+    initLiff();
   }, []);
 
   const initLiff = () => {
