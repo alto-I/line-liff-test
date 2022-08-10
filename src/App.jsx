@@ -6,8 +6,10 @@ function App() {
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
   const [version, setVersion] = useState('');
+  const [context, setContext] = useState('');
 
   useEffect(() => {
+    setContext(liff.getContext());
     setVersion(liff.getLineVersion());
     liff
       .init({
@@ -39,6 +41,7 @@ function App() {
       >
         LIFF Documentation
       </a>
+      <p>context:{context}</p>
     </div>
   );
 }
