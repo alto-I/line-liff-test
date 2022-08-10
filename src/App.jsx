@@ -64,7 +64,7 @@ function App() {
       .sendMessages([
         {
           type: 'text',
-          text: postData,
+          text: JSON.stringify(postData),
         },
       ])
       .then(() => {
@@ -100,11 +100,11 @@ function App() {
         <br />
         <Select label="総合評価" {...register('総合評価')} />
         <br />
-        <Input label="ニックネーム" register={register} required />
+        <Input label="ニックネーム" register={register} />
         <br />
-        <Input label="タイトル" register={register} required />
+        <Input label="タイトル" register={register} />
         <br />
-        <Input label="本文" register={register} required />
+        <Input label="本文" register={register} />
         <br />
         {errors.exampleRequired && <span>This field is required</span>}
         <input type="submit" value="投稿する" />
