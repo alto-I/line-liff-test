@@ -59,24 +59,23 @@ function App() {
   // };
 
   const handleSendMessages = (postData) => {
-    // const messages = `商品
-    //   ${postData.product}
-    //   総合評価
-    //   ${postData.rate}
-    //   ニックネーム
-    //   ${postData.nickname}
-    //   タイトル
-    //   ${postData.title}
-    //   本文
-    //   ${postData.description}
-    //   `
-    //   .trim()
-    //   .replace(/(?<=^|\r|\r?\n)\s+/g, '');
     liff
       .sendMessages([
         {
           type: 'text',
-          text: 'aaa',
+          text: `商品
+          ${postData.product}
+          総合評価
+          ${postData.rate}
+          ニックネーム
+          ${postData.nickname}
+          タイトル
+          ${postData.title}
+          本文
+          ${postData.description}
+          `
+            .trim()
+            .replace(/(?<=^|\r|\r?\n)\s+/g, ''),
         },
       ])
       .then(() => {
@@ -93,7 +92,7 @@ function App() {
       <form onSubmit={handleSubmit(handleSendMessages)}>
         {/* ここはRailsから取ってきて商品一覧にしたい */}
         <Input label="商品" value="product" register={register} />
-        {/* <br />
+        <br />
         <Select label="総合評価" {...register('rate')} />
         <br />
         <Input label="ニックネーム" value="nickname" register={register} />
@@ -101,7 +100,7 @@ function App() {
         <Input label="タイトル" value="title" register={register} />
         <br />
         <Input label="本文" value="description" register={register} />
-        <br /> */}
+        <br />
         {errors.exampleRequired && <span>This field is required</span>}
         <input type="submit" value="投稿する" />
       </form>
