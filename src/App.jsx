@@ -59,7 +59,6 @@ function App() {
   // };
 
   const handleSendMessages = (postData) => {
-    // console.log(postData);
     const messages = `商品
       ${postData.product}
       総合評価
@@ -73,13 +72,23 @@ function App() {
       `
       .trim()
       .replace(/(?<=^|\r|\r?\n)\s+/g, '');
-
-    // console.log(messages);
     liff
       .sendMessages([
         {
           type: 'text',
-          text: messages,
+          text: `商品
+          ${postData.product}
+          総合評価
+          ${postData.rate}
+          ニックネーム
+          ${postData.nickname}
+          タイトル
+          ${postData.title}
+          本文
+          ${postData.description}
+          `
+            .trim()
+            .replace(/(?<=^|\r|\r?\n)\s+/g, ''),
         },
       ])
       .then(() => {
