@@ -24,10 +24,6 @@ const Select = React.forwardRef(({ onChange, onBlur, name, label }, ref) => (
 ));
 
 function App() {
-  // const [message, setMessage] = useState('');
-  // const [error, setError] = useState('');
-  // const [version, setVersion] = useState('');
-  // const [login, setLogin] = useState('');
   const [profile, setProfile] = useState('');
   const {
     register,
@@ -35,39 +31,32 @@ function App() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => console.log(data);
-  // console.log(watch());
-
   useEffect(() => {
-    // initLiff();
+    initLiff();
   }, []);
 
   const initLiff = () => {
     liff
       .init({ liffId: import.meta.env.VITE_LIFF_ID })
       .then(() => {
-        if (liff.isLoggedIn() === false) {
-          liff.login({});
-        } else {
-          getUserInfo();
-        }
+        if (liff.isLoggedIn() === false) liff.login({});
       })
       .catch((error) => {
         console.error(error);
       });
   };
 
-  const getUserInfo = () => {
-    liff
-      .getProfile()
-      .then((profile) => {
-        console.log(profile);
-        setProfile(JSON.stringify(profile));
-      })
-      .catch((error) => {
-        console.error(error);
-      });
-  };
+  // const getUserInfo = () => {
+  //   liff
+  //     .getProfile()
+  //     .then((profile) => {
+  //       console.log(profile);
+  //       setProfile(JSON.stringify(profile));
+  //     })
+  //     .catch((error) => {
+  //       console.error(error);
+  //     });
+  // };
 
   const handleSendMessages = (postData) => {
     liff
