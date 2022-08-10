@@ -1,16 +1,45 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import liff from '@line/liff';
+import { useForm } from 'react-hook-form';
 import './App.css';
 
+const Input = ({ label, register, required }) => (
+  <>
+    <label>{label}</label>:
+    <input {...register(label, { required })} />
+  </>
+);
+
+const Select = React.forwardRef(({ onChange, onBlur, name, label }, ref) => (
+  <>
+    <label>{label}</label>
+    <select name={name} ref={ref} onChange={onChange} onBlur={onBlur}>
+      <option value="1">1</option>
+      <option value="2">2</option>
+      <option value="3">3</option>
+      <option value="4">4</option>
+      <option value="5">5</option>
+    </select>
+  </>
+));
+
 function App() {
-  const [message, setMessage] = useState('');
-  const [error, setError] = useState('');
-  const [version, setVersion] = useState('');
-  const [login, setLogin] = useState('');
+  // const [message, setMessage] = useState('');
+  // const [error, setError] = useState('');
+  // const [version, setVersion] = useState('');
+  // const [login, setLogin] = useState('');
   const [profile, setProfile] = useState('');
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => console.log(data);
+  // console.log(watch());
 
   useEffect(() => {
-    initLiff();
+    // initLiff();
   }, []);
 
   const initLiff = () => {
@@ -40,14 +69,9 @@ function App() {
       });
   };
 
-  const handleSendMessages = () => {
+  const handleSendMessages = (postData) => {
     liff
-      .sendMessages([
-        {
-          type: 'text',
-          text: 'Hello, World!',
-        },
-      ])
+      .sendMessages([postData])
       .then(() => {
         window.alert('Message sent');
       })
@@ -75,8 +99,21 @@ function App() {
   return (
     <>
       <p>ようそこ LIFFアプリへ!</p>
-      <p>profile:{profile}</p>
-      <button onClick={handleSendMessages}>トークルームに送信</button>
+      <form onSubmit={handleSubmit(handleSendMessages)}>
+        {/* ここはRailsから取ってきて商品一覧にしたい */}
+        <Input label="商品" register={register} required />
+        <br />
+        <Select label="総合評価" {...register('総合評価')} />
+        <br />
+        <Input label="ニックネーム" register={register} required />
+        <br />
+        <Input label="タイトル" register={register} required />
+        <br />
+        <Input label="本文" register={register} required />
+        <br />
+        {errors.exampleRequired && <span>This field is required</span>}
+        <input type="submit" value="投稿する" />
+      </form>
     </>
   );
 }
