@@ -1,21 +1,23 @@
-import { useEffect, useState } from "react";
-import liff from "@line/liff";
-import "./App.css";
+import { useEffect, useState } from 'react';
+import liff from '@line/liff';
+import './App.css';
 
 function App() {
-  const [message, setMessage] = useState("");
-  const [error, setError] = useState("");
+  const [message, setMessage] = useState('');
+  const [error, setError] = useState('');
+  const [version, setVersion] = useState('');
 
   useEffect(() => {
+    setVersion(liff.getLineVersion());
     liff
       .init({
-        liffId: import.meta.env.VITE_LIFF_ID
+        liffId: import.meta.env.VITE_LIFF_ID,
       })
       .then(() => {
-        setMessage("LIFF init succeeded.");
+        setMessage('LIFF init succeeded.');
       })
       .catch((e) => {
-        setMessage("LIFF init failed.");
+        setMessage('LIFF init failed.');
         setError(`${e}`);
       });
   });
@@ -24,6 +26,7 @@ function App() {
     <div className="App">
       <h1>create-liff-app</h1>
       {message && <p>{message}</p>}
+      <p>line version: {version}</p>
       {error && (
         <p>
           <code>{error}</code>
