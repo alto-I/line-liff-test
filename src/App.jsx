@@ -16,7 +16,7 @@ function App() {
       })
       .then(() => {
         setMessage('LIFF init succeeded.');
-        setLogin(toString(liff.isLoggedIn()));
+        setLogin(liff.isLoggedIn().toString());
       })
       .catch((e) => {
         setMessage('LIFF init failed.');
