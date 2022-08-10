@@ -22,7 +22,6 @@ function App() {
         setMessage('LIFF init failed.');
         setError(`${e}`);
       });
-    liff.login();
   });
 
   return (
