@@ -7,6 +7,7 @@ function App() {
   const [error, setError] = useState('');
   const [version, setVersion] = useState('');
   const [login, setLogin] = useState('');
+  const [profile, setProfile] = useState('');
 
   useEffect(() => {
     initLiff();
@@ -30,7 +31,7 @@ function App() {
     liff
       .getProfile()
       .then((profile) => {
-        alert(JSON.stringify(profile));
+        setProfile(JSON.stringify(profile));
       })
       .catch((error) => {
         console.error(error);
@@ -58,7 +59,10 @@ function App() {
       {liff.isInClient() === false ? (
         <p>ブラウザからは使えない。LIFF使え!!</p>
       ) : (
-        <p>ようそこ LIFFアプリへ!</p>
+        <>
+          <p>ようそこ LIFFアプリへ!</p>
+          <p>profile:{profile}</p>
+        </>
       )}
     </>
   );
