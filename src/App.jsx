@@ -32,7 +32,7 @@ function App() {
   } = useForm();
 
   useEffect(() => {
-    initLiff();
+    // initLiff();
   }, []);
 
   const initLiff = () => {
@@ -69,25 +69,14 @@ function App() {
       ${postData.title}
       本文
       ${postData.description}
-      `
-      .trim()
-      .replace(/(?<=^|\r|\r?\n)\s+/g, '');
+      `.trim();
+
     console.log(message);
     liff
       .sendMessages([
         {
           type: 'text',
-          text: `商品
-          ${postData.product}
-          総合評価
-          ${postData.rate}
-          ニックネーム
-          ${postData.nickname}
-          タイトル
-          ${postData.title}
-          本文
-          ${postData.description}
-          `,
+          text: message,
         },
       ])
       .then(() => {
