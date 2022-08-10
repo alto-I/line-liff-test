@@ -31,6 +31,7 @@ function App() {
     liff
       .getProfile()
       .then((profile) => {
+        console.log(profile);
         setProfile(JSON.stringify(profile));
       })
       .catch((error) => {
