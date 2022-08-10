@@ -56,14 +56,8 @@ function App() {
 
   return (
     <>
-      {liff.isInClient() === false ? (
-        <p>ブラウザからは使えない。LIFF使え!!</p>
-      ) : (
-        <>
-          <p>ようそこ LIFFアプリへ!</p>
-          <p>profile:{profile}</p>
-        </>
-      )}
+      <p>ようそこ LIFFアプリへ!</p>
+      <p>profile:{profile}</p>
     </>
   );
 }
