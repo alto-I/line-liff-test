@@ -59,17 +59,18 @@ function App() {
   // };
 
   const handleSendMessages = (postData) => {
-    const message = `商品
-      ${postData.product}
-      総合評価
-      ${postData.rate}
-      ニックネーム
-      ${postData.nickname}
-      タイトル
-      ${postData.title}
-      本文
-      ${postData.description}
-      `.trim();
+    const message = [
+      '商品',
+      postData.product,
+      '総合評価',
+      postData.rate,
+      'ニックネーム',
+      postData.nickname,
+      'タイトル',
+      postData.title,
+      '本文',
+      postData.description,
+    ].join('\n');
 
     console.log(message);
     liff
