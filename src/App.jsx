@@ -32,7 +32,7 @@ function App() {
   } = useForm();
 
   useEffect(() => {
-    initLiff();
+    // initLiff();
   }, []);
 
   const initLiff = () => {
@@ -59,8 +59,14 @@ function App() {
   // };
 
   const handleSendMessages = (postData) => {
+    console.log(postData);
     liff
-      .sendMessages([postData])
+      .sendMessages([
+        {
+          type: 'text',
+          text: postData,
+        },
+      ])
       .then(() => {
         window.alert('Message sent');
       })
