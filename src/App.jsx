@@ -19,6 +19,7 @@ function App() {
       .then(() => {
         if (liff.isLoggedIn() === false) {
           liff.login({});
+        } else {
           getUserInfo();
         }
       })
