@@ -76,19 +76,7 @@ function App() {
       .sendMessages([
         {
           type: 'text',
-          text: `商品
-          ${postData.product}
-          総合評価
-          ${postData.rate}
-          ニックネーム
-          ${postData.nickname}
-          タイトル
-          ${postData.title}
-          本文
-          ${postData.description}
-          `
-            .trim()
-            .replace(/(?<=^|\r|\r?\n)\s+/g, ''),
+          text: 'aaa',
         },
       ])
       .then(() => {
@@ -104,7 +92,7 @@ function App() {
       <p>ようそこ LIFFアプリへ!</p>
       <form onSubmit={handleSubmit(handleSendMessages)}>
         {/* ここはRailsから取ってきて商品一覧にしたい */}
-        <Input label="商品" value="product" register={register} required />
+        <Input label="商品" value="product" register={register} />
         <br />
         <Select label="総合評価" {...register('rate')} />
         <br />
