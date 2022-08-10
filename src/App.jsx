@@ -73,9 +73,7 @@ function App() {
           ${postData.title}
           本文
           ${postData.description}
-          `
-            .trim()
-            .replace(/(?<=^|\r|\r?\n)\s+/g, ''),
+          `,
         },
       ])
       .then(() => {
