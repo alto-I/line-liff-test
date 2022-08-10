@@ -40,6 +40,22 @@ function App() {
       });
   };
 
+  const handleSendMessages = () => {
+    liff
+      .sendMessages([
+        {
+          type: 'text',
+          text: 'Hello, World!',
+        },
+      ])
+      .then(() => {
+        window.alert('Message sent');
+      })
+      .catch((error) => {
+        window.alert('Error sending message: ' + error);
+      });
+  };
+
   // useEffect(() => {
   //   setVersion(liff.getLineVersion());
   //   liff
@@ -60,6 +76,7 @@ function App() {
     <>
       <p>ようそこ LIFFアプリへ!</p>
       <p>profile:{profile}</p>
+      <button onClick={handleSendMessages}>トークルームに送信</button>
     </>
   );
 }
